@@ -267,6 +267,9 @@ public class Utils {
      */
     public static void cleanupDownloadsDir(Context context) {
         File downloadPath = getDownloadPath(context);
+        if (!downloadPath.exists() || !downloadPath.mkdir())
+            return;
+        
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         removeUncryptFiles(downloadPath);
